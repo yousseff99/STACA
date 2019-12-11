@@ -1,31 +1,3 @@
-<?php 
-session_start();
-
- ?>
-
-
-
-<?php
-$bdd = new PDO("mysql:host=127.0.0.1;dbname=staca;charset=utf8", "root", "");
-
-
-
-if(isset($_POST['pseudo']) AND isset($_POST['message']) AND !empty($_POST['pseudo']) AND !empty($_POST['message']) )
-
-{
-    $pseudo = htmlspecialchars($_POST['pseudo'] );
-    $message = htmlspecialchars($_POST['message'] );
-$date = date("d-m-Y");
-$heure = date("H:i");
-    $insertmsg = $bdd->prepare('INSERT INTO Chat(pseudo, message) VALUES(?, ?)');
-    $insertmsg->execute(array($pseudo, $message));
-}
-
-?>
-
-
-
-
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -48,6 +20,9 @@ and open the template in the editor.
         <script type="text/javascript" src="js/test.js"></script>
 
 
+
+
+
         <script src="js/modernizr.js"></script>
     </head>
     <body class="fixed-left">
@@ -58,7 +33,7 @@ and open the template in the editor.
             <div class="topbar">
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.php" class="logo"><img src="images/logo.png" alt=""></a>
+                        <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="pull-left menu-toggle">
@@ -131,90 +106,44 @@ and open the template in the editor.
                             <li><a href="#">Logout</a></li>
                         </ul>
                     </li>
-                  <li class="active"><a href="index.php"><i class="fa fa-home"></i>  <span>Dashboard</span></a></li>  
+                    <li class="active"><a href="index.html"><i class="fa fa-home"></i>  <span>Dashboard</span></a></li>  
+
+                   <!--   place sous menu -->
+
+
+
+
+
 
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span>STATS</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><i class="fa fa-bar-chart-o"></i> <span>PRODUCTS STATS</span><span class="fa arrow"></span></li> <!-- graph flot-->
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="best_sellers_ever.php">Best Sellers Ever</a>
-                                </li>
-                                <li>
-                                        <a href="best_sales_monthly.php">Best Sales MONTHLY</a>
-                                </li>
-                                <li>
-                                        <a href="best_sales_weekly.php">Best Sales WEEKLY</a>
-                                </li>
-                            </ul>
-                            <li><i class="fa fa-bar-chart-o"></i> <span>CUSTOMERS STATS</span><span class="fa arrow"></span></li><!-- graph morris-->
-                            <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="Top_customers.php">TOP Customers</a>
-                                    </li>
-                                    <li>
-                                        <a href="loyal_customers.php">LOYAL CUSTOMERS</a>
-                                    </li>
-                                    <li>
-                                        <a href="over_view_monthly.php">Over Views MONTHLY</a>
-                                    </li>
-                            </ul>
-                            <li><i class="fa fa-bar-chart-o"></i> <span>INCOME STATS</span><span class="fa arrow"></span></li><!-- graph chartjs-->
-                            <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="over_view_total_income.php">Over View Total Income</a>
-                                    </li>
-                            </ul>
-                            
-                        </ul>
-                    </li>
-      
-                    <li>
-                        <a href="affichageclient1.php"><i class="fa fa-edit"></i> <span>CUSTOMERS</span><span class="fa arrow"></span></a>
+                        <a href="checkout_events1.php"><i class="fa fa-sitemap"></i> <span>Event</span><span class="fa arrow"></span></a></li>
+
                         
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table"></i> <span>Products</span><span class="fa arrow"></span></a>
+                        <!--
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="../../../web/table_basic.php">Static Tables</a></li>
-                            <li><a href="table_data_tables.html">Data Tables</a></li>
+                            <li>
+                                <a href="#">Third Level <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Second Level Item</a></li>
+                            <li>
+                                <a href="#">Second Level Item</a></li>
+                            <li>
+                                <a href="#">Second Level Item</a></li>
                         </ul>
                     </li>
-
-
-                    <li>
-                        <a href="ajoutPromo.php"><i class="fa fa-flask"></i> <span class="nav-label">PROMO</span><span class="fa arrow"></span></a>
-          
-                    </li>
-
-
-                    <li>
-                        <a href="checkout_events1.php"><i class="fa fa-flask"></i> <span class="nav-label">EVENT</span><span class="fa arrow"></span></a>
-          
-                    </li>
-
-
-                    <li>
-                        <a href="chat.php"><i class="fa fa-flask"></i> <span class="nav-label">CHAT ROOM</span><span class="fa arrow"></span></a>
-          
-                    </li>
-                    <li>
-                                                <a href="empty_page.html"><i class="fa fa-truck"></i> <span>Shipping</span><span class="fa arrow"></span></a>
-
-                                                <ul class="nav nav-second-level collapse">
-                            <li><a href="livraison.php">Delivery</a></li>
-                            <li><a href="livreur.php">Delivery_Man</a></li>
-                           
-                        </ul>
-                    </li>
-
-                    <li >
-                                                <a href="reclamation.php"><i class="fas fa-ban"></i> <span>Reclamation</span><span></span></a>
-
-                       
-                    </li>
-
+                </ul>
+            -->
                 <div class="nav-bottom clearfix">
                     <a href="#" style="border-right: 0px;"><i class="fa fa-lock"></i></a>
                     <a href="#" style="border-right: 0px;"><i class="fa fa-download"></i></a>
@@ -227,104 +156,108 @@ and open the template in the editor.
                 <div class="content">
                     <div class="container">
                         <div class="page-title">
-                            <h3>CHAT ROOM FOR ADMINS</h3>
+                            <h3>Ma Promotion</h3>
                             <a href="#"><i class="fa fa-plus"></i> Add Widget</a>
                             <a href="#"><i class="fa fa-share"></i> Share</a>
                             <a href="#"><i class="fa fa-envelope"></i> Email</a>
                         </div><!--end page title-->
 
-                             <p class="promo" align="center" class="text-center text-info">Chat Room</p>
+                             <p class="promo" align="center" class="text-center text-info">Ajouter Evenement</p>
 
 
 
 
 
-                             <form method="post" action="">
-                                 <table align="center">
-                                      <tr>
-        <td height="46" width="35%">
-            <h4> PSEUDO</h4>
-        </td>
-        <td width="63%" height="46"><input type="text" name="pseudo" class="form-control" placeholder="PSEUDO" value="<?php if(isset($pseudo)) {echo $pseudo;}  ?>"></td>
-    </tr>
+           
+            <?PHP
+include "../core/eventsC.php";
 
+if (isset($_GET['id'])){
+    $eventsC1=new EventsC();
+    $result=$eventsC1->recupererEvents($_GET['id']);
+    foreach($result as $row){
+        $id=$row['id'];
+        $name=$row['name'];
+        $address=$row['address'];
+        $phone=$row['phone'];
+        $informations=$row['informations'];
+        $DateDebut=$row['DateDebut'];
+        $DateFin=$row['DateFin'];
+        $photo=$row['photo'];
+        
 
-                                     <tr>
-        <td width="35%">
-            <h4>MESSAGE</h4>
-        </td>
-        <td width="63%"><textarea  name="message" class="form-control"  placeholder="Message" ></textarea></td>
-    </tr>
-
-
-
-                                    <tr>
-                                        <td></td>
-        <td ><input type="submit" class="btn btn-primary btn-block" value="ENVOYER MESSAGE"></td>
-    </tr>
+?>
 
 
 
+<form class="was-validated" method="POST">
+<table>
+<div class="container-fluid">
+<hr>
+<div class="row">
+        <div class="col-md-20">
+            <h3 class="text-center text-info">Update Events</h3>
+            <hr>
+<div class="form-group">
 
-                                 </table>
+<input class="form-control" required pattern="[0-9]{1,12}" placeholder="Enter the Id" type="text" name="id" value="<?PHP echo $id ?>">
+</div>
 
+<div class="form-group">
+<input class="form-control"  placeholder="Enter Name Of the Event" type="text" name="name" value="<?PHP echo $name ?>">
+</div>
 
+<div class="form-group">
+<input class="form-control"  placeholder="Enter your address" type="text" name="address" value="<?PHP echo $address ?>">
+</div>
 
-                             </form>
-                             <br><br>
+<div class="form-group">
+<input class="form-control"  placeholder="Enter your phone " type="tel" name="phone" value="<?PHP echo $phone ?>">
+</div>
 
-                             <table align="center">
+<div class="form-group">
+<input type="text"  class="form-control"  placeholder="Informations About the Events" name="informations" value="<?PHP echo $informations ?>">
+</div>
 
-<td>
-                             <?php 
-              
-                               $allmsg = $bdd->query('SELECT * FROM Chat ORDER BY id DESC');
+<div class="form-group">
+<input class="form-control" required placeholder="DateDebut" type="Date" name="DateDebut" value="<?PHP echo $DateDebut ?>">
+</div>
 
-                               while ($msg = $allmsg->fetch()) 
-                                {
-                                   
-                               
-                              ?>
-                              <b> <?php echo $msg['pseudo']; ?>:  </b><?php echo $msg['message']; ?> <br>
-                              <?php 
-                              }
+<div class="form-group">
+<input class="form-control" required placeholder="DateFin" type="Date" name="DateFin" value="<?PHP echo $DateFin ?>">
+</div>
 
-                               ?>
-                           </td>
-                           <td></td>
+<div class="form-group">
+<input type="file" name="photo" class="custom-file">
+</div>
 
+<div class="form-group">
+<input  class="btn btn-success btn-block" type="submit" name="modifier" value="Update">
+</div>
 
+<div class="form-group">
+<input  type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
+</div>
 
 </table>
 
+</div>
+</div>
+</form>
+<?PHP
+    }}
+if (isset($_POST['modifier'])){
+    $events=new Events($_POST['id'],$_POST['name'],$_POST['address'],$_POST['phone'],$_POST['informations'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['photo']);
+    $eventsC1->modifierEvents($events,$_POST['id_ini']);
+    echo $_POST['id_ini'];
+    echo ("<script> window.location.replace(\"checkout_events1.php\")</script>");
+}
+?> 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
 
 
 
